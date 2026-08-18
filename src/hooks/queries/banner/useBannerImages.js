@@ -54,8 +54,8 @@ export const adaptBannerData = (rawData) => {
  * Injects the AbortController signal for memory safety.
  */
 
-const fetchBannerImages = async ({signal}) => {
-    const payload = buildComponentConfigPayload ({
+const fetchBannerImages = async ({ signal }) => {
+    const payload = buildComponentConfigPayload({
         moduleName: "Banner Images",
         aspectType: "bannerImages",
         query: {
@@ -64,7 +64,7 @@ const fetchBannerImages = async ({signal}) => {
         },
     });
 
-    const response = await apiClient.post(ENDPOINTS.FILTER_API, payload, {signal});
+    const response = await apiClient.post(ENDPOINTS.FILTER_API, payload, { signal });
     return adaptBannerData(response);
 };
 

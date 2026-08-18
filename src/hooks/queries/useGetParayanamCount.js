@@ -7,6 +7,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { apiClient } from '../../api/client';
 import { ENDPOINTS } from '../../constants/apiConstants';
+import { ENV_CONFIG} from '../../constants/envConfig';
 
 /**
  * Helper Function: Generate Today's Date dynamically
@@ -22,6 +23,21 @@ const getTodaysDate = () => {
     });
 };
 
+/**
+ * Helper Function: Format date strings for the UI (e.g., "05/10/2025" -> "May 10, 2025")
+ */
+const formatUIDate = (dateStr) => {
+    if(!dateStr) return "";
+    try {
+        return new Date(dateStr).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+        });
+    } catch {
+        return dateStr;
+    }
+}
 /**
  * 1. Data Adapter ("Model" Equivalent)
  * Safely extracts the 0th index data as requested, with zero-tolerance for undefined crashes.
@@ -40,10 +56,18 @@ const adaptParayanamData = (rawData) => {
 
         const event = rawData.data[0]; // Safely access the 0th index
 
+        const eventName = event?.refDataName || "Laksha Lalitha Sahasranama Parayanam";
+        const startDate = formatUIDate(event?.startDate);
+        const endDate = formatUIDate(event?.endDate);
+        const targetCount = parseInt(event?.maxCount || "100000", 10);
+
         // Ensure resultd exists before accessing the 0th index
         if (!event?.resultd || event.resultd.length === 0) {
             return {
-                eventName: event.refDataName || "Laksha Lalitha Sahasranama Parayanam",
+                eventName,
+                startDate,
+                endDate,
+                targetCount,
                 sum: 0,
                 kotiCount: 0
             };
@@ -52,9 +76,13 @@ const adaptParayanamData = (rawData) => {
         const counts = event.resultd[0]; // Safely access the 0th index
 
         return {
-            eventName: event.refDataName || "Laksha Lalitha Sahasranama Parayanam",
-            sum: counts.sum || 0,
-            kotiCount: counts.kotiCount || 0
+            eventName,
+            startDate,
+            endDate,
+            targetCount,
+            sum: counts?.sum || 0,
+            kotiCount: counts?.kotiCount || 0,
+            participatingDevotees: counts?.count || 0
         }
     } catch (error) {
         console.error("[Adapter Error] Failed to parse Parayanam Data:", error);
@@ -73,10 +101,10 @@ const fetchParayanamCount = async ({ signal }) => {
         "dataJson": {
             "startDate": today,
             "endDate": today,
-            "memberId": "6863d5ab6105c2994fcf10aa",
-            "eventId": "68188904d7730103ed36ce0a"
+            "memberId": ENV_CONFIG.PARAYANAM_MEMBER_ID,
+            "eventId": ENV_CONFIG.PARAYANAM_EVENT_ID
         },
-        "clientId": "663a5c489f155e1f2e7d0c70"
+        "clientId": ENV_CONFIG.CLIENT_ID
     };
 
     const response = await apiClient.post(ENDPOINTS.EVENT_PARTICIPATE_LIST_API, payload, { signal });

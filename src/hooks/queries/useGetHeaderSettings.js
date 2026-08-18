@@ -21,8 +21,7 @@ const adaptHeaderData = (rawData) => {
         return null; // Return null if data is missing or empty
     }
 
-    const item = rawData.data.find(entry => entry?.aspectType === 'headerSettings');
-    if (!item) return null;
+    const item = rawData.data[0];
 
     return {
         id: item._id || "",

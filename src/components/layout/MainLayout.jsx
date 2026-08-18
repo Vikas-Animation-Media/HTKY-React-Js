@@ -58,7 +58,7 @@ export const MainLayout = () => {
       <Header />
       <Navbar />
       {/* Dynamic Page Outlet Container */}
-      <main className="flex-grow w-full max-w-7xl mx-auto md:py-6">
+      <main className="flex-grow w-full">
         <Suspense fallback={<PageLoadingFallback />}>
           <Outlet />
         </Suspense>

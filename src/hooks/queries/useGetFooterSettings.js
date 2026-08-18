@@ -24,7 +24,7 @@ export const adaptFooterData = (rawData) => {
             return null; // Component should handle null gracefully
         }
 
-        const footerItem = rawData.data; // Safely access the 0th index
+        const footerItem = rawData.data[0]; // Safely access the 0th index
         if (!footerItem) return null;
 
         let formattedLogoUrl = null;
@@ -35,19 +35,19 @@ export const adaptFooterData = (rawData) => {
         }
 
         return {
-           phone: footerItem?.phone || "",
+            phone: footerItem?.phone || "",
             email: footerItem?.email || "",
             address: footerItem?.refDataCode || "Sree Devi Peetham",
             logoUrl: formattedLogoUrl,
-            weekdayMorningTime: footerItem?.weekdayMorningTime || "",
-            weekDayEveningTime: footerItem?.weekDayEveningTime || "",
-            weekEndMorningTime: footerItem?.weekEndMorningTime || "",
-            weekEndEveningTime: footerItem?.weekEndEveningTime || "",
-            facebookLink: footerItem?.facebookLink || "",
-            twitterLink: footerItem?.twitterLink || "",
-            youtubeLink: footerItem?.youtubeLink || "",
-            instagramLink: footerItem?.instagramLink || "",
-            copyrightText: footerItem?.footerCopyRight || footerItem?.["footerCopyRight  "] || "Copyright © 2026. Sree Devi Peetham. All Rights Reserved."
+            weekdayMorningTime: footerItem?.weekdayMorningTime || "123",
+            weekDayEveningTime: footerItem?.weekDayEveningTime || "234",
+            weekEndMorningTime: footerItem?.weekEndMorningTime || "345",
+            weekEndEveningTime: footerItem?.weekEndEveningTime || "456",
+            facebookLink: footerItem?.facebookLink || "567",
+            twitterLink: footerItem?.twitterLink || "678",
+            youtubeLink: footerItem?.youtubeLink || "789",
+            instagramLink: footerItem?.instagramLink || "890",
+            copyrightText: footerItem?.footerCopyRight || footerItem?.["footerCopyRight  "] || "Copyright © 2026. Sree Devi Peetham. All Rights Reserved. 901"
         };
     } catch (error) {
         console.error('[Adapter Error] Failed to map Footer Data:', error);

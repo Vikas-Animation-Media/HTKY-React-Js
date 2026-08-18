@@ -1,33 +1,38 @@
 /**
  * @file src/pages/Home/index.jsx
  * @description Main landing page for the application.
- * Using index.jsx allows us to colocate Home-specific UI components in this folder later.
+ * Using index.jsx allows us to colocate Home-specific UI components in this folder.
  */
 
+import { BannerImages } from "./components/BannerImages";
+import { APP_COLORS } from "../../constants/appColors";
+import { APP_FONTS } from "../../constants/appTheme";
+import { APP_STRINGS } from "../../constants/appStrings";
 
 export default function Home() {
   return (
-    <div className="w-full flex flex-col items-center justify-center min-h-[50vh] bg-white rounded-lg shadow-sm border border-gray-100 p-8 mt-4 animate-fade-in">
-      <div className="text-center space-y-4">
+    <div className="w-full flex flex-col min-h-screen bg-gray-50">
+      {/* 1. Dynamic Auto-Scrolling Hero Banner */}
+      <BannerImages />
+
+      {/* Placeholder for future Home Page sections (Events, Announcements, etc.) */}
+      <section className="w-full max-w-7xl mx-auto px-4 py-8 flex flex-col items-center">
         <h2
-          className="text-3xl md:text-5xl font-bold text-[#800000] tracking-wider uppercase"
-          style={{ fontFamily: "Georgia, serif" }}
+          className="text-2xl md:text-3xl font-bold uppercase tracking-wider mb-4"
+          style={{ color: APP_COLORS.primary, fontFamily: APP_FONTS.heading }}
         >
           Welcome to Sree Devi Peetham
         </h2>
-
-        <p className="text-gray-600 md:text-lg max-w-2xl mx-auto font-medium">
-          The Home Page container is successfully mounted and connected to the
-          Router.
+        <p
+          className="text-center max-w-2xl"
+          style={{
+            color: APP_COLORS.textSecondary,
+            fontFamily: APP_FONTS.body,
+          }}
+        >
+          {APP_STRINGS.loadingContent || "More features coming soon..."}
         </p>
-
-        <div className="pt-6">
-          <span className="inline-block px-4 py-2 bg-orange-100 text-[#800000] font-semibold text-sm rounded border border-orange-200 border-dashed">
-            Dynamic sections (Events, Announcements, Donations) will be added
-            here next.
-          </span>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }

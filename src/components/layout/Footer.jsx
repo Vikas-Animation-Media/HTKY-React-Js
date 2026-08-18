@@ -113,8 +113,7 @@ export const Footer = () => {
                   </span>{" "}
                   <a
                     href={`mailto:${footerData.email}`}
-                    className="hover:opacity-75 underline decoration-2 underline-offset-2 transition-all"
-                    style={{ textDecorationColor: APP_COLORS.secondary }}
+                    className="hover:opacity-75 decoration-2 transition-all"
                   >
                     {footerData.email}
                   </a>

@@ -5,6 +5,7 @@
  */
 
 import { BannerImages } from "./components/BannerImages";
+import { ParayanamWidget } from "./components/ParayanamWidget";
 import { APP_COLORS } from "../../constants/appColors";
 import { APP_FONTS } from "../../constants/appTheme";
 import { APP_STRINGS } from "../../constants/appStrings";
@@ -14,6 +15,7 @@ export default function Home() {
     <div className="w-full flex flex-col min-h-screen bg-gray-50">
       {/* 1. Dynamic Auto-Scrolling Hero Banner */}
       <BannerImages />
+      <ParayanamWidget />
 
       {/* Placeholder for future Home Page sections (Events, Announcements, etc.) */}
       <section className="w-full max-w-7xl mx-auto px-4 py-8 flex flex-col items-center">

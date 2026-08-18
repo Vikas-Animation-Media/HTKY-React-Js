@@ -11,7 +11,7 @@ import { APP_COLORS } from "./appColors";
  * Font Families used across the application
  */
 export const APP_FONTS = Object.freeze({
-    heading: "Georgia, serif", // Primary heading font (Traditional/Serif look for temple theme)
+    heading: "Georgia, serif, charm", // Primary heading font (Traditional/Serif look for temple theme)
     body: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", // Clean modern sans-serif for body
 });
 

@@ -42,7 +42,7 @@ export const Header = () => {
       */}
       <div className="flex flex-col xl:flex-row items-center justify-center space-y-3 xl:space-y-0 w-full xl:contents mb-4 xl:mb-0 text-center">
         {/* Logo: Center on Mobile, Left on Desktop (w-1/4 to perfectly balance the right side) */}
-        <div className="flex-shrink-0 flex justify-center w-full xl:w-1/4">
+        <div className="flex-shrink-0 flex justify-center w-full xl:w-[18%]">
           {headerData.logoUrl ? (
             <img
               src={headerData.logoUrl}
@@ -72,7 +72,7 @@ export const Header = () => {
           </h1>
 
           <h2
-            className="text-sm sm:text-base md:text-lg xl:text-xl tracking-wider leading-tight mb-2"
+            className="text-sm sm:text-base md:text-lg xl:text-xl font-bold tracking-wider leading-tight mb-2"
             style={{
               color: APP_COLORS.primary,
               fontFamily: APP_FONTS.heading,
@@ -82,7 +82,7 @@ export const Header = () => {
           </h2>
 
           <h2
-            className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm sm:text-base md:text-lg xl:text-xl tracking-wider leading-tight mb-2"
+            className="flex flex-col sm:flex-row flex-wrap items-center font-bold justify-center gap-x-6 gap-y-2 text-sm sm:text-base md:text-lg xl:text-xl tracking-wider leading-tight mb-2"
             style={{
               color: APP_COLORS.primary,
               fontFamily: APP_FONTS.heading,
@@ -105,7 +105,7 @@ export const Header = () => {
 
           {headerData.subHeading3 && (
             <h2
-              className="text-sm sm:text-base md:text-lg xl:text-xl tracking-wider leading-relaxed mt-2 max-w-2xl"
+              className="text-sm sm:text-base md:text-lg xl:text-xl font-bold tracking-wider leading-relaxed mt-2 max-w-4xl"
               style={{
                 color: APP_COLORS.primary,
                 fontFamily: APP_FONTS.heading,
@@ -118,7 +118,7 @@ export const Header = () => {
       </div>
 
       {/* Button: Center on Mobile, Right on Desktop (w-1/4 to perfectly balance the left side) */}
-      <div className="flex flex-col items-center xl:items-end justify-center w-full xl:w-1/4 mt-2 xl:mt-0">
+      <div className="flex flex-col items-center xl:items-end justify-center w-full xl:w-[18%] mt-2 xl:mt-0">
         <div className="flex flex-row justify-center w-full max-w-sm xl:max-w-none">
           <button
             className="text-white px-4 py-3 md:px-8 md:py-2 text-sm md:text-base font-bold tracking-wide hover:opacity-90 transition-opacity w-full xl:w-auto rounded-sm"

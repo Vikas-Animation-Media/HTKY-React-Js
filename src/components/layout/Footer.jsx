@@ -87,8 +87,11 @@ export const Footer = () => {
               />
             )}
 
-            <p className="text-base font-semibold text-gray-900 leading-snug">
-              {footerData.address}
+            <p
+              className="text-base font-semibold text-gray-900 leading-snug"
+              dangerouslySetInnerHTML={{ __html: footerData.address }}
+            >
+              {/* {footerData.address} */}
             </p>
 
             <div className="space-y-1.5 text-base font-semibold text-gray-900">

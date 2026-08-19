@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 import { useGetNavMenu } from "../../hooks/queries/useGetNavMenu";
 import { APP_COLORS } from "../../constants/appColors";
 import { APP_FONTS } from "../../constants/appTheme";
+import { ShoppingCart } from "lucide-react";
 
 export const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -177,6 +178,14 @@ export const Navbar = () => {
                 </div>
               );
             })}
+            {/* 2. ADDED CART UI - DESKTOP VIEW */}
+            <div className="flex items-center ml-2 lg:ml-6 pl-2 lg:pl-4 border-l border-white/30 cursor-pointer hover:opacity-80 transition-opacity">
+              <ShoppingCart
+                className="w-5 h-5 lg:w-6 lg:h-6"
+                strokeWidth={2.5}
+              />
+              <span className="ml-1.5 text-lg lg:text-xl font-bold">0</span>
+            </div>
           </div>
         </div>
       </div>
@@ -284,6 +293,28 @@ export const Navbar = () => {
               </div>
             );
           })}
+          {/* 3. ADDED CART UI - MOBILE VIEW */}
+          <div className="flex items-center justify-between py-2 cursor-pointer hover:opacity-80">
+            <div className="flex items-center space-x-2">
+              <ShoppingCart
+                className="w-5 h-5"
+                strokeWidth={2.5}
+                style={{ color: APP_COLORS.secondary }}
+              />
+              <span
+                className="text-xs uppercase tracking-wider font-bold"
+                style={{ color: APP_COLORS.secondary }}
+              >
+                MY CART
+              </span>
+            </div>
+            <span
+              className="font-bold text-lg"
+              style={{ color: APP_COLORS.textInverse }}
+            >
+              0
+            </span>
+          </div>
         </div>
       )}
     </nav>

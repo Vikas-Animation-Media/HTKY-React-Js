@@ -18,26 +18,54 @@ const DEFAULT_NAV_ITEMS = [
     { id: '1', title: 'HOME', path: '/' },
     {
         id: '2',
-        title: 'ABOUT US',
+        title: 'SERVICES',
         subMenu: [
-            { id: '2-1', title: 'ABOUT TEMPLE', path: '/about-temple' },
-            { id: '2-2', title: 'ABOUT DEITIES', path: '/about-deities' },
-            { id: '2-3', title: 'ABOUT PRIESTS', path: '/about-priests' },
+            { id: '2-1', title: 'BOOK A SERVICE', path: '/book-service' },
+            { id: '2-2', title: 'SPONSORSHIPS', path: '/sponsorships' },
         ],
     },
-    { id: '3', title: 'SERVICES', path: '/services' },
-    { id: '4', title: 'EVENTS', path: '/events' },
-    { id: '5', title: 'SPONSORSHIPS', path: '/sponsorships' },
     {
-        id: '6', title: 'AKSHYA PATRA', subMenu: [
-            { id: '6-1', title: 'PRASADAM', path: '/prasadam' },
-            { id: '6-2', title: 'CATERING', path: '/catering' },
+        id: '3',
+        title: 'CALENDAR',
+        subMenu: [
+            { id: '2-1', title: 'CALENDAR', path: '/calendar' },
+            { id: '2-2', title: 'COMMUNITY EVENTS', path: '/community-events' },
+            { id: '2-3', title: 'NEWSLETTERS', path: '/newsletters' },
+        ],
+    },
+    {
+        id: '4', title: 'DONATIONS', subMenu: [
+            { id: '4-1', title: 'GENERAL DONATION', path: '/general-donation' },
+            { id: '4-2', title: 'RECURRING DONATION', path: '/recurring-donation' },
         ]
     },
     {
-        id: '7', title: 'DONATIONS', subMenu: [
-            { id: '7-1', title: 'GENERAL DONATION', path: '/general-donation' },
+        id: '5', title: 'EDUCATION', subMenu: [
+            { id: '6-1', title: 'HINDU SCHOOL', path: '/hindu-school' },
+            { id: '6-2', title: 'ALL CLASSES', path: '/all-classes' },
         ]
+    },
+    {
+        id: '7', title: 'SEVA', subMenu: [
+            { id: '7-1', title: 'VOLUNTEER SIGNUP', path: '/volunteer-signup' },
+            { id: '7-2', title: 'SENIOR PAGE', path: '/senior-page' },
+            { id: '7-3', title: 'GRIEF SUPPORT', path: '/grief-support' },
+            { id: '7-4', title: 'LOST AND FOUND', path: '/lost-found' },
+        ]
+    },
+    {
+        id: '8',
+        title: 'ABOUT TEMPLE',
+        subMenu: [
+            { id: '8-1', title: 'ABOUT TEMPLE', path: '/about-temple' },
+            { id: '8-2', title: 'ABOUT DEITIES', path: '/about-deities' },
+            { id: '8-3', title: 'ABOUT PRIESTS', path: '/about-priests' },
+            { id: '8-4', title: 'LAND DONORS', path: '/land-donors' },
+            { id: '8-5', title: 'BOARD & COMMITTEE MEMBERS', path: '/board-committee-members' },
+            { id: '8-6', title: 'TEMPLE ETIQUETTE & VISITS', path: '/temple-etiquette-visits' },
+            { id: '8-7', title: 'JAIN-SANGH', path: '/jain-sangh' },
+            { id: '8-8', title: 'SHIRDI SAI SATSANG', path: '/shirdi-sai-satsang' },
+        ],
     },
 ];
 

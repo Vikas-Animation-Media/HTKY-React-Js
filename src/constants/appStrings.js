@@ -14,6 +14,7 @@ export const APP_STRINGS = Object.freeze({
     // --- Header Strings ---
     btnRequestPuja: "Request for Puja",
     btnDevoteePortal: "Devotee Portal",
+    btnSignIn: "Sign In",
     noLogoText: "No Logo",
     countLabel: "Count -",
     kotiNamaLabel: "Koti Nama Stotra Parayanam :",

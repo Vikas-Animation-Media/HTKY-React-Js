@@ -17,20 +17,21 @@ import { buildComponentConfigPayload } from '../../utils/apiPayloadBuilder';
  */
 
 const adaptHeaderData = (rawData) => {
-    if (!rawData || !rawData.data || rawData.data.length === 0) {
-        return null; // Return null if data is missing or empty
-    }
+    // if (!rawData || !rawData.data || rawData.data.length === 0) {
+    //     return null; // Return null if data is missing or empty
+    // }
 
     const item = rawData.data[0];
 
     return {
         id: item._id || "",
-        templeName: item.refDataName || 'SREE DEVI PEETHAM',
+        templeName: item.refDataName || 'Hindu Temple of Kentucky',
         logoUrl: item.leftImage ? `${BASE_URL}${item.leftImage}` : null,
-        email: item.email || "",
-        phone: item.phone || "",
         address: item.address || "",
+        phone: item.phone || "",
+        email: item.email || "",
         templeTiming: item.templeTiming || "",
+        subHeading3: item.subHeading3 || ""
     };
 };
 

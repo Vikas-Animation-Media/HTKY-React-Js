@@ -12,5 +12,7 @@ export const BASE_URL = ENV_CONFIG.BASE_URL;
 
 export const ENDPOINTS = Object.freeze({
     FILTER_API: 'api/appgen/filterAPI',
-    EVENT_PARTICIPATE_LIST_API: 'api/puja/getParticipateEventList'
+    EVENT_PARTICIPATE_LIST_API: 'api/puja/getParticipateEventList',
+    GET_CALENDAR_API: 'api/home/getCalendar'
+
 })

@@ -6,6 +6,7 @@
 
 import { BannerImages } from "./components/BannerImages";
 import { ParayanamWidget } from "./components/ParayanamWidget";
+import { EventsWidget } from "./components/Events";
 import { DonationCards } from "./components/DonationCards";
 import { APP_COLORS } from "../../constants/appColors";
 import { APP_FONTS } from "../../constants/appTheme";
@@ -17,6 +18,7 @@ export default function Home() {
       {/* 1. Dynamic Auto-Scrolling Hero Banner */}
       <BannerImages />
       <ParayanamWidget />
+      <EventsWidget />
       <DonationCards />
 
       {/* Placeholder for future Home Page sections (Events, Announcements, etc.) */}

@@ -26,10 +26,27 @@ export const adaptBannerData = (rawData) => {
             return [];
         }
 
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
         const bannerItem = rawData.data[0];
         if (!bannerItem) return null;
 
-        return rawData.data.filter(item => item?.status === "ACTIVE").sort((a, b) => (a?.sequenceIdAsNumber || 0) - (b?.sequenceIdAsNumber || 0)).map(item => {
+        return rawData.data.filter(item => {
+            const isActive = item?.status === "ACTIVE";
+
+            let isEndDateValid = true;
+
+            if (item?.endDate && item.endDate !== "") {
+                const bannerEndDate = new Date(item.endDate);
+                bannerEndDate.setHours(0, 0, 0, 0);
+
+                isEndDateValid = bannerEndDate >= today;
+            }
+
+            return isActive && isEndDateValid;
+
+        }).sort((a, b) => (a?.sequenceIdAsNumber || 0) - (b?.sequenceIdAsNumber || 0)).map(item => {
             const formattedBannerImage = item?.refDataName ? (item.refDataName.startsWith('http') ? item.refDataName : `${BASE_URL}${item.refDataName}`) : null;
 
             return {

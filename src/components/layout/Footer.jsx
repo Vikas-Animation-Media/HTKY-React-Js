@@ -1,19 +1,23 @@
 /**
  * @file src/components/layout/Footer.jsx
- * @description Highly refined, compact, and crystal-clear Footer component.
- * Refactored strictly to shift hardcoded hex values and static texts to centralized constants
- * without altering ANY original UI layout or grid logic.
+ * @description Footer updated to match the 5-column layout with increased logo size
+ * to remove empty space, and strict center alignment for mobile/tablet views.
+ * Built exactly on the provided structural pattern without unnecessary UI changes.
  */
 
 import { NavLink } from "react-router-dom";
-import { useGetFooterSettings } from "../../hooks/queries/useGetFooterSettings";
+import {
+  useGetFooterSettings,
+  useGetBackgroundMusic,
+} from "../../hooks/queries/useGetFooterSettings";
 import { APP_COLORS } from "../../constants/appColors";
 import { APP_STRINGS } from "../../constants/appStrings";
 
 export const Footer = () => {
-  const { data: footerData, isLoading } = useGetFooterSettings(); // Consume Server State hook with alias
+  const { data: footerData, isLoading } = useGetFooterSettings();
+  const { data: musicData } = useGetBackgroundMusic();
 
-  // Skeleton Loader matching compact layout
+  // Skeleton Loader
   if (isLoading) {
     return (
       <footer
@@ -23,7 +27,8 @@ export const Footer = () => {
           borderColor: APP_COLORS.primary,
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-pulse">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 animate-pulse">
+          <div className="h-28 bg-gray-200 rounded"></div>
           <div className="h-28 bg-gray-200 rounded"></div>
           <div className="h-28 bg-gray-200 rounded"></div>
           <div className="h-28 bg-gray-200 rounded"></div>
@@ -63,70 +68,33 @@ export const Footer = () => {
         borderColor: APP_COLORS.primary,
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6 md:py-8">
-        {/* 4-Column Responsive Grid with High Contrast and Clear Typography */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-8 items-start">
-          {/* Column 1: Contact Us & Logo */}
-          <div className="space-y-3 flex flex-col items-center sm:items-start text-center sm:text-left">
-            <h3
-              className="text-lg md:text-xl font-extrabold tracking-wide uppercase border-b-2 pb-1 inline-block"
-              style={{
-                color: APP_COLORS.primary,
-                borderColor: APP_COLORS.secondary,
-              }}
-            >
-              {APP_STRINGS.footerContactUs}
-            </h3>
-
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 py-6 md:py-8">
+        {/* 5-Column Grid with updated responsive alignment */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-8 items-start">
+          {/* Column 1: Logo & Audio Player */}
+          {/* FIX: Changed alignment to center strictly on mobile/tablet (lg:items-start lg:text-left) */}
+          <div className="space-y-4 flex flex-col items-center lg:items-center   text-center lg:text-left w-full">
             {footerData.logoUrl && (
               <img
                 src={footerData.logoUrl}
                 alt="Sree Devi Peetham Logo"
-                className="h-20 w-20 md:h-24 md:w-24 object-contain my-2 drop-shadow-sm"
+                // FIX: Significantly increased logo height to fill empty space
+                className="h-32 md:h-40 lg:h-44 w-auto object-contain my-2 drop-shadow-sm"
                 loading="lazy"
               />
             )}
-
-            <p
-              className="text-base font-semibold text-gray-900 leading-snug"
-              dangerouslySetInnerHTML={{ __html: footerData.address }}
-            >
-              {/* {footerData.address} */}
-            </p>
-
-            <div className="space-y-1.5 text-base font-semibold text-gray-900">
-              {footerData.phone && (
-                <p>
-                  <span
-                    className="font-extrabold"
-                    style={{ color: APP_COLORS.primary }}
-                  >
-                    {APP_STRINGS.phoneLabel}
-                  </span>{" "}
-                  {footerData.phone}
-                </p>
-              )}
-              {footerData.email && (
-                <p>
-                  <span
-                    className="font-extrabold"
-                    style={{ color: APP_COLORS.primary }}
-                  >
-                    {APP_STRINGS.emailLabel}
-                  </span>{" "}
-                  <a
-                    href={`mailto:${footerData.email}`}
-                    className="hover:opacity-75 decoration-2 transition-all"
-                  >
-                    {footerData.email}
-                  </a>
-                </p>
-              )}
-            </div>
+            {musicData?.url && (
+              <audio
+                controls
+                src={musicData.url}
+                className="w-full max-w-[240px] h-10 mt-2"
+                title={musicData.musicName}
+              />
+            )}
           </div>
 
           {/* Column 2: Static ABOUT US Links */}
-          <div className="space-y-3 flex flex-col items-center sm:items-start text-center sm:text-left">
+          <div className="space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left">
             <h3
               className="text-lg md:text-xl font-extrabold tracking-wide uppercase border-b-2 pb-1 inline-block"
               style={{
@@ -137,6 +105,22 @@ export const Footer = () => {
               {APP_STRINGS.footerAboutUs}
             </h3>
             <ul className="space-y-2 text-base font-bold text-gray-900 w-full">
+              <li>
+                <NavLink
+                  to="/about-temple"
+                  className="hover:opacity-75 sm:hover:translate-x-1 inline-block transition-all duration-200"
+                >
+                  HINDU SCHOOL
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/about-temple"
+                  className="hover:opacity-75 sm:hover:translate-x-1 inline-block transition-all duration-200"
+                >
+                  MEMBERSHIP
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/about-temple"
@@ -182,14 +166,14 @@ export const Footer = () => {
                   to="/calendar"
                   className="hover:opacity-75 sm:hover:translate-x-1 inline-block transition-all duration-200"
                 >
-                  CALENDAR
+                  DOWNLOAD APK
                 </NavLink>
               </li>
             </ul>
           </div>
 
           {/* Column 3: Temple Timings */}
-          <div className="space-y-3 flex flex-col items-center sm:items-start text-center sm:text-left">
+          <div className="space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left">
             <h3
               className="text-lg md:text-xl font-extrabold tracking-wide uppercase border-b-2 pb-1 inline-block"
               style={{
@@ -224,7 +208,7 @@ export const Footer = () => {
           </div>
 
           {/* Column 4: Quick Links & Social Media */}
-          <div className="space-y-3 flex flex-col items-center sm:items-start text-center sm:text-left">
+          <div className="space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left">
             <h3
               className="text-lg md:text-xl font-extrabold tracking-wide uppercase border-b-2 pb-1 inline-block"
               style={{
@@ -235,7 +219,7 @@ export const Footer = () => {
               {APP_STRINGS.footerConnect}
             </h3>
 
-            <div className="flex space-x-4 pt-1 justify-center sm:justify-start w-full">
+            <div className="flex space-x-4 pt-1 justify-center lg:justify-start w-full">
               {footerData.facebookLink && (
                 <a
                   href={footerData.facebookLink}
@@ -292,7 +276,17 @@ export const Footer = () => {
               )}
             </div>
 
-            <div className="pt-2 flex flex-col space-y-1.5 text-base font-bold text-gray-900 items-center sm:items-start w-full">
+            {/* Policies Header */}
+            <h3
+              className="text-lg md:text-xl font-extrabold tracking-wide uppercase border-b-2 pb-1 inline-block mt-4"
+              style={{
+                color: APP_COLORS.primary,
+                borderColor: APP_COLORS.secondary,
+              }}
+            >
+              POLICIES
+            </h3>
+            <div className="pt-1 flex flex-col space-y-1.5 text-base font-bold text-gray-900 w-full items-center lg:items-start">
               <NavLink
                 to="/terms"
                 className="hover:opacity-75 hover:underline inline-block w-fit"
@@ -314,6 +308,61 @@ export const Footer = () => {
               >
                 {APP_STRINGS.securityPolicy}
               </NavLink>
+            </div>
+          </div>
+
+          {/* Column 5: Contact Us */}
+          <div className="space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <h3
+              className="text-lg md:text-xl font-extrabold tracking-wide uppercase border-b-2 pb-1 inline-block"
+              style={{
+                color: APP_COLORS.primary,
+                borderColor: APP_COLORS.secondary,
+              }}
+            >
+              {APP_STRINGS.footerContactUs}
+            </h3>
+
+            <button
+              className="px-6 py-2 rounded text-sm font-bold uppercase tracking-wider text-white shadow-md hover:opacity-90 transition-opacity mt-1 mb-2"
+              style={{ backgroundColor: APP_COLORS.primary }}
+            >
+              Contact Us
+            </button>
+
+            <p
+              className="text-base font-semibold text-gray-900 leading-snug"
+              dangerouslySetInnerHTML={{ __html: footerData.address }}
+            ></p>
+
+            <div className="space-y-1.5 text-base font-semibold text-gray-900 flex flex-col items-center lg:items-start">
+              {footerData.phone && (
+                <p>
+                  <span
+                    className="font-extrabold"
+                    style={{ color: APP_COLORS.primary }}
+                  >
+                    {APP_STRINGS.phoneLabel}
+                  </span>{" "}
+                  {footerData.phone}
+                </p>
+              )}
+              {footerData.email && (
+                <p>
+                  <span
+                    className="font-extrabold"
+                    style={{ color: APP_COLORS.primary }}
+                  >
+                    {APP_STRINGS.emailLabel}
+                  </span>{" "}
+                  <a
+                    href={`mailto:${footerData.email}`}
+                    className="hover:opacity-75 decoration-2 transition-all"
+                  >
+                    {footerData.email}
+                  </a>
+                </p>
+              )}
             </div>
           </div>
         </div>

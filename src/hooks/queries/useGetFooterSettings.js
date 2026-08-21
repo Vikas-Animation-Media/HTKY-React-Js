@@ -37,16 +37,16 @@ export const adaptFooterData = (rawData) => {
         return {
             phone: footerItem?.phone || "",
             email: footerItem?.email || "",
-            address: footerItem?.refDataCode || "Sree Devi Peetham",
+            address: footerItem?.refDataCode || "",
             logoUrl: formattedLogoUrl,
-            weekdayMorningTime: footerItem?.weekdayMorningTime || "123",
-            weekDayEveningTime: footerItem?.weekDayEveningTime || "234",
-            weekEndMorningTime: footerItem?.weekEndMorningTime || "345",
-            weekEndEveningTime: footerItem?.weekEndEveningTime || "456",
-            facebookLink: footerItem?.facebookLink || "567",
-            twitterLink: footerItem?.twitterLink || "678",
-            youtubeLink: footerItem?.youtubeLink || "789",
-            instagramLink: footerItem?.instagramLink || "890",
+            weekdayMorningTime: footerItem?.weekdayMorningTime || "",
+            weekDayEveningTime: footerItem?.weekDayEveningTime || "",
+            weekEndMorningTime: footerItem?.weekEndMorningTime || "",
+            weekEndEveningTime: footerItem?.weekEndEveningTime || "",
+            facebookLink: footerItem?.facebookLink || "",
+            twitterLink: footerItem?.twitterLink || "",
+            youtubeLink: footerItem?.youtubeLink || "",
+            instagramLink: footerItem?.instagramLink || "",
             copyrightText: footerItem?.footerCopyRight || footerItem?.["footerCopyRight  "] || "Copyright © 2026. Sree Devi Peetham. All Rights Reserved. 901"
         };
     } catch (error) {
@@ -80,6 +80,53 @@ export const useGetFooterSettings = () => {
         queryFn: fetchFooterSettings,
         staleTime: 1000 * 60 * 60 * 24, // Cache for 24 hours
         retry: 2,
+        refetchOnWindowFocus: false,
+    });
+};
+
+// ==========================================
+// 2. BACKGROUND MUSIC ADAPTER & HOOK
+// ==========================================
+
+export const adaptBackgroundMusicData = (rawData) => {
+    try {
+        if (!rawData?.data || rawData.data.length === 0) return null;
+
+        // Find today's music based on current day
+        const todayDay = new Date().toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+        const todayMusic = rawData.data.find(m => m.dayName === todayDay) || rawData.data[0];
+
+        if (!todayMusic?.refDataName) return null;
+
+        return {
+            musicName: todayMusic.musicName || "Temple Music",
+            url: todayMusic.refDataName.startsWith('http')
+                ? todayMusic.refDataName
+                : `${BASE_URL}${todayMusic.refDataName}`
+        };
+    } catch (error) {
+        console.error('[Adapter Error] Failed to map Background Music:', error);
+        return null;
+    }
+};
+
+const fetchBackgroundMusic = async ({ signal }) => {
+    const payload = buildComponentConfigPayload({
+        moduleName: "Background Music",
+        aspectType: "backgroundMusic",
+        query: { aspectType: "backgroundMusic", status: "ACTIVE" },
+        skip: 0,
+        next: 10
+    });
+    const response = await apiClient.post(ENDPOINTS.FILTER_API, payload, { signal });
+    return adaptBackgroundMusicData(response);
+};
+
+export const useGetBackgroundMusic = () => {
+    return useQuery({
+        queryKey: ['backgroundMusic'],
+        queryFn: fetchBackgroundMusic,
+        staleTime: 1000 * 60 * 60 * 24,
         refetchOnWindowFocus: false,
     });
 };

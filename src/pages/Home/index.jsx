@@ -11,9 +11,6 @@ import { DonationCards } from "./components/DonationCards";
 import { AboutHtky } from "./components/AboutHtky";
 import { AboutHsky } from "./components/AboutHsky";
 import { VolunteerSubscribe } from "./components/VolunteerSubscribe";
-import { APP_COLORS } from "../../constants/appColors";
-import { APP_FONTS } from "../../constants/appTheme";
-import { APP_STRINGS } from "../../constants/appStrings";
 
 export default function Home() {
   return (
@@ -26,25 +23,6 @@ export default function Home() {
       <DonationCards />
       <AboutHsky />
       <VolunteerSubscribe />
-
-      {/* Placeholder for future Home Page sections (Events, Announcements, etc.) */}
-      {/* <section className="w-full max-w-7xl mx-auto px-4 py-8 flex flex-col items-center">
-        <h2
-          className="text-2xl md:text-3xl font-bold uppercase tracking-wider mb-4"
-          style={{ color: APP_COLORS.primary, fontFamily: APP_FONTS.heading }}
-        >
-          Welcome to Sree Devi Peetham
-        </h2>
-        <p
-          className="text-center max-w-2xl"
-          style={{
-            color: APP_COLORS.textSecondary,
-            fontFamily: APP_FONTS.body,
-          }}
-        >
-          {APP_STRINGS.loadingContent || "More features coming soon..."}
-        </p>
-      </section> */}
     </div>
   );
 }

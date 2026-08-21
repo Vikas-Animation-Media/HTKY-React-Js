@@ -8,6 +8,8 @@ import { BannerImages } from "./components/BannerImages";
 import { ParayanamWidget } from "./components/ParayanamWidget";
 import { EventsWidget } from "./components/Events";
 import { DonationCards } from "./components/DonationCards";
+import { AboutHtky } from "./components/AboutHtky";
+import { AboutHsky } from "./components/AboutHsky";
 import { APP_COLORS } from "../../constants/appColors";
 import { APP_FONTS } from "../../constants/appTheme";
 import { APP_STRINGS } from "../../constants/appStrings";
@@ -19,7 +21,9 @@ export default function Home() {
       <BannerImages />
       <ParayanamWidget />
       <EventsWidget />
+      <AboutHtky />
       <DonationCards />
+      <AboutHsky />
 
       {/* Placeholder for future Home Page sections (Events, Announcements, etc.) */}
       <section className="w-full max-w-7xl mx-auto px-4 py-8 flex flex-col items-center">
